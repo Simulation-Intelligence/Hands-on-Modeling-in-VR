@@ -19,6 +19,7 @@ public class MatrixOperations : MonoBehaviour
         
         _initialScale = transform.localScale.x;
         _initialLocalScale = transform.localScale / _initialScale;
+        _initialRotation = transform.rotation;
     }
     
     // Update is called once per frame
@@ -28,9 +29,14 @@ public class MatrixOperations : MonoBehaviour
         {
             // Method1: use the Matrix4x4 in unity
             Vector3 trans = new Vector3(0, 0.0f, 0.2f);
-            float scale_factor = 1.2f;
+            
+            float scale_factor = 1.0f;
             Vector3 scale = _initialLocalScale * scale_factor;
-            MatrixTransform(trans, scale);
+            
+            Vector3 eulerAngles = new Vector3(15f, 0, 0);
+            Quaternion rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
+            
+            MatrixTransform(trans, rotation, scale);
         }
         
         if (Input.GetKeyDown(KeyCode.W))
@@ -43,15 +49,15 @@ public class MatrixOperations : MonoBehaviour
             // Vector4Scale(new Vector3(scale, scale, scale));
 
             // Method2: use the four-dimensional vector in unity to rotate
-            Vector4Rotation(Axis.X, 15f);
-            Vector4Rotation(Axis.Y, 15f);
-            Vector4Rotation(Axis.Z, 15f);
+            // Vector4Rotation(Axis.X, 15f);
+            // Vector4Rotation(Axis.Y, 15f);
+            // Vector4Rotation(Axis.Z, 15f);
         }
     }
     
-    public void MatrixTransform(Vector3 trans, Vector3 scale)
+    public void MatrixTransform(Vector3 trans, Quaternion rotation, Vector3 scale)
     {
-        _matrix.SetTRS(trans, transform.rotation, scale);
+        _matrix.SetTRS(trans, rotation, scale);
         Debug.Log(_matrix);
         UpdateMeshVertices();
     }
@@ -131,6 +137,6 @@ public class MatrixOperations : MonoBehaviour
         float qy = (_matrix.m02 - _matrix.m20) / w;
         float qz = (_matrix.m10 - _matrix.m01) / w;
         
-        transform.rotation = new Quaternion(qx, qy, qz, qw);
+        transform.rotation = transform.rotation * new Quaternion(qx, qy, qz, qw);
     }
 }
