@@ -56,8 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/GesturalOperations/StretchObject.cs" />
-    <Compile Include="Assets/Scripts/MatrixOperations/MatrixOperations.cs" />
     <Compile Include="Assets/Scripts/GesturalOperations/PinchObject.cs" />
+    <Compile Include="Assets/Scripts/MatrixTransform/MatrixTransform.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
