@@ -55,7 +55,7 @@ namespace Oculus.Interaction
             // Use the centroid of our grabs as the transformation center
             var initialCenter = Vector3.Lerp(_previousGrabPointA.position, _previousGrabPointB.position, 0.5f);
             var targetCenter = Vector3.Lerp(grabA.position, grabB.position, 0.5f);
-
+            
             // Our transformer rotation is based off our previously saved rotation
             Quaternion initialRotation = _activeRotation;
             
