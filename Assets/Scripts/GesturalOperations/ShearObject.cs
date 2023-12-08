@@ -58,7 +58,6 @@ namespace Oculus.Interaction
             // Use the centroid of our grabs as the transformation center
             var initialCenter = Vector3.Lerp(_previousGrabPointA.position, _previousGrabPointB.position, 0.5f);
             var targetCenter = Vector3.Lerp(grabA.position, grabB.position, 0.5f);
-            
         }
         
         public void EndTransform() { }
@@ -84,28 +83,3 @@ namespace Oculus.Interaction
         }
     }
 }
-
-// public class MeshShearer : MonoBehaviour
-// {
-//     public float shearFactorY = 0.5f;
-//     public float shearFactorZ = 0.5f;
-
-//     void Start()
-//     {
-//         Mesh mesh = GetComponent<MeshFilter>().mesh;
-//         Vector3[] vertices = mesh.vertices;
-
-//         Matrix4x4 shearMatrix = Matrix4x4.identity;
-//         shearMatrix.m01 = shearFactorY; // Shearing along X-axis with respect to Y
-//         shearMatrix.m02 = shearFactorZ; // Shearing along X-axis with respect to Z
-
-//         for (int i = 0; i < vertices.Length; i++)
-//         {
-//             vertices[i] = shearMatrix.MultiplyPoint3x4(vertices[i]);
-//         }
-
-//         mesh.vertices = vertices;
-//         mesh.RecalculateBounds();
-//         mesh.RecalculateNormals();
-//     }
-// }

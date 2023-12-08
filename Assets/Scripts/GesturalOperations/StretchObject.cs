@@ -73,11 +73,11 @@ namespace Oculus.Interaction
             
             // Apply all the rotation deltas
             Quaternion baseTargetRotation = baseRotation * halfDeltaA * halfDeltaB * initialRotation;
-
+            
             // Normalize the rotation
             Vector3 upDirection = baseTargetRotation * Vector3.up;
             Quaternion targetRotation = Quaternion.LookRotation(targetVector, upDirection).normalized;
-
+            
             // Save this target rotation as our active rotation state for future updates
             _activeRotation = targetRotation;
             
@@ -100,7 +100,7 @@ namespace Oculus.Interaction
             offsetInTargetSpace /= previousScale;
 
             Quaternion rotationInTargetSpace = Quaternion.Inverse(initialRotation) * targetTransform.rotation;
-
+            
             targetTransform.position = (targetRotation * (_activeScale * offsetInTargetSpace)) + targetCenter;
             targetTransform.rotation = targetRotation * rotationInTargetSpace;
             
