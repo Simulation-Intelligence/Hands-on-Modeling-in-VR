@@ -25,23 +25,28 @@ public class MatrixOperations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Method1: use the Matrix4x4 in unity
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            // Method1: use the Matrix4x4 in unity
-            Vector3 trans = new Vector3(0, 0.0f, 0.2f);
+            Vector3 trans = new Vector3(0, 0.0f, 0.0f);
             
-            float scale_factor = 1.0f;
+            float scale_factor = 2.0f;
             Vector3 scale = _initialLocalScale * scale_factor;
             
-            Vector3 eulerAngles = new Vector3(15f, 0, 0);
+            // Vector3 eulerAngles = new Vector3(15f, 0, 0);
+            Vector3 eulerAngles = new Vector3(0, 0, 0);
             Quaternion rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
             
-            MatrixTransform(trans, rotation, scale);
+            // shear the object
+            float shear_angle1 = 45f;
+            float shear_angle2 = 0f;
+            
+            MatrixTransform(trans, rotation, scale, Axis.Z, shear_angle1, shear_angle2);
         }
         
+        // Method2: use the four-dimensional vector in unity to translate
         if (Input.GetKeyDown(KeyCode.W))
         {
-            // Method2: use the four-dimensional vector in unity to translate
             // Vector4Translate(new Vector3(Random.Range(-2,2), Random.Range(-2,2), Random.Range(-2,2)));
 
             // Method2: use the four-dimensional vector in unity to scale
@@ -55,11 +60,35 @@ public class MatrixOperations : MonoBehaviour
         }
     }
     
-    public void MatrixTransform(Vector3 trans, Quaternion rotation, Vector3 scale)
+    public void MatrixTransform(Vector3 trans, Quaternion rotation, Vector3 scale, Axis axis, float shear_angle1, float shear_angle2)
     {
+        // include translation, rotation, and scale
         _matrix.SetTRS(trans, rotation, scale);
+        
+        // shear the object
+        shearObject(axis, shear_angle1, shear_angle2);
+        
         Debug.Log(_matrix);
         UpdateMeshVertices();
+    }
+    
+    public void shearObject(Axis axis, float shear_angle1, float shear_angle2)
+    {
+        switch (axis)
+        {
+            case Axis.X:
+                _matrix.m01 = Mathf.Tan(shear_angle1 * Mathf.Deg2Rad); // Shearing along X-axis with respect to Y
+                _matrix.m02 = Mathf.Tan(shear_angle2 * Mathf.Deg2Rad); // Shearing along X-axis with respect to Z
+                break;
+            case Axis.Y:
+                _matrix.m10 = Mathf.Tan(shear_angle1 * Mathf.Deg2Rad); // Shearing along Y-axis with respect to X
+                _matrix.m12 = Mathf.Tan(shear_angle2 * Mathf.Deg2Rad); // Shearing along Y-axis with respect to Z
+                break;
+            case Axis.Z:
+                _matrix.m20 = Mathf.Tan(shear_angle1 * Mathf.Deg2Rad); // Shearing along Z-axis with respect to X
+                _matrix.m21 = Mathf.Tan(shear_angle2 * Mathf.Deg2Rad); // Shearing along Z-axis with respect to Y
+                break;
+        } 
     }
     
     public void UpdateMeshVertices()
@@ -70,7 +99,9 @@ public class MatrixOperations : MonoBehaviour
             vertices[i] = _matrix.MultiplyPoint3x4(vertices[i]);
         }
         mesh.vertices = vertices;
+        
         mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
     }
     
     public void Vector4Translate(Vector3 trans)

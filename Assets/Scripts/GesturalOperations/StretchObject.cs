@@ -15,7 +15,6 @@ namespace Oculus.Interaction
         
         private Pose _previousGrabPointA;
         private Pose _previousGrabPointB;
-        private Pose _grabDeltaInLocalSpace;
         private IGrabbable _grabbable;
         
         public void Initialize(IGrabbable grabbable)
