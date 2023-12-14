@@ -17,7 +17,7 @@ namespace Oculus.Interaction
         private Pose _previousGrabPointB;
         private Pose _grabDeltaInLocalSpace;
         private IGrabbable _grabbable;
-
+        
         private Mesh mesh;
         private Matrix4x4 _matrix;
         
@@ -42,7 +42,6 @@ namespace Oculus.Interaction
             _initialScale = _activeScale;
             
             _initialLocalScale = _grabbable.Transform.localScale / _initialScale;
-            Debug.Log("The _initialLocalScale is： " + _initialLocalScale);
             
             _previousGrabPointA = new Pose(grabA.position, grabA.rotation);
             _previousGrabPointB = new Pose(grabB.position, grabB.rotation);
@@ -53,11 +52,33 @@ namespace Oculus.Interaction
         {
             var grabA = _grabbable.GrabPoints[0];
             var grabB = _grabbable.GrabPoints[1];
+            
             var targetTransform = _grabbable.Transform;
             
             // Use the centroid of our grabs as the transformation center
             var initialCenter = Vector3.Lerp(_previousGrabPointA.position, _previousGrabPointB.position, 0.5f);
             var targetCenter = Vector3.Lerp(grabA.position, grabB.position, 0.5f);
+
+            Quaternion initialRotation = _activeRotation;
+            
+            Vector3 initialVector = _previousGrabPointB - _previousGrabPointA;
+            Vector3 targetVector = grabB.position - grabA.position;
+            Quaternion baseRotation = Quaternion.FromToRotation(initialVector, targetVector);
+
+            Quaternion deltaA = grabA.rotation * Quaternion.Inverse(_previousGrabPointA.rotation);
+            Quaternion halfDeltaA = Quaternion.Slerp(Quaternion.identity, deltaA, 1.0f);
+            
+            Quaternion deltaB = grabB.rotation * Quaternion.Inverse(_previousGrabPointB.rotation);
+            Quaternion halfDeltaB = Quaternion.Slerp(Quaternion.identity, deltaB, 1.0f);
+
+            Quaternion baseTargetRotation = baseRotation * halfDeltaA * halfDeltaB * initialRotation;
+            
+            Vector3 upDirection = baseTargetRotation * Vector3.up;
+            Quaternion targetRotation = Quaternion.LookRotation(targetVector, upDirection).normalized;
+
+            _activeRotation = targetRotation;
+
+            
         }
         
         public void EndTransform() { }

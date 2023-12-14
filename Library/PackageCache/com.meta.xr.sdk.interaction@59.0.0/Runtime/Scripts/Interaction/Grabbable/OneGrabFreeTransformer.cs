@@ -37,29 +37,23 @@ namespace Oculus.Interaction
         {
             _grabbable = grabbable;
         }
-        
+
         public void BeginTransform()
         {
             Pose grabPoint = _grabbable.GrabPoints[0];
             var targetTransform = _grabbable.Transform;
-            
-            _grabDeltaInLocalSpace = new Pose(
-                // transforms a vector from world space to local space
-                // main a consistent relative position
-                targetTransform.InverseTransformVector(grabPoint.position - targetTransform.position),
-                // calculates the rotation difference between the object’s current rotation and the grab point's rotation
-                Quaternion.Inverse(grabPoint.rotation) * targetTransform.rotation);
+            _grabDeltaInLocalSpace = new Pose(targetTransform.InverseTransformVector(grabPoint.position - targetTransform.position),
+                                            Quaternion.Inverse(grabPoint.rotation) * targetTransform.rotation);
         }
-        
+
         public void UpdateTransform()
         {
             Pose grabPoint = _grabbable.GrabPoints[0];
             var targetTransform = _grabbable.Transform;
-            
             targetTransform.rotation = grabPoint.rotation * _grabDeltaInLocalSpace.rotation;
             targetTransform.position = grabPoint.position - targetTransform.TransformVector(_grabDeltaInLocalSpace.position);
         }
-        
+
         public void EndTransform() { }
     }
 }
