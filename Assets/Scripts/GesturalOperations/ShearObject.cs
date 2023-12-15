@@ -19,6 +19,7 @@ namespace Oculus.Interaction
         private IGrabbable _grabbable;
         
         private Mesh mesh;
+        private Vector3[] initialMeshVertices;
         private Matrix4x4 _matrix;
         
         public void Initialize(IGrabbable grabbable)
@@ -29,6 +30,9 @@ namespace Oculus.Interaction
         // Start is called before the first frame update
         public void BeginTransform()
         {
+            mesh = GetComponent<MeshFilter>().mesh;
+            initialMeshVertices = mesh.vertices;
+            
             var grabA = _grabbable.GrabPoints[0];
             var grabB = _grabbable.GrabPoints[1];
             
@@ -61,8 +65,9 @@ namespace Oculus.Interaction
 
             Quaternion initialRotation = _activeRotation;
             
-            Vector3 initialVector = _previousGrabPointB - _previousGrabPointA;
+            Vector3 initialVector = _previousGrabPointB.position - _previousGrabPointA.position;
             Vector3 targetVector = grabB.position - grabA.position;
+            
             Quaternion baseRotation = Quaternion.FromToRotation(initialVector, targetVector);
 
             Quaternion deltaA = grabA.rotation * Quaternion.Inverse(_previousGrabPointA.rotation);
@@ -78,7 +83,43 @@ namespace Oculus.Interaction
 
             _activeRotation = targetRotation;
 
+            float activeDistance = targetVector.magnitude;
+            if(Mathf.Abs(activeDistance) < 0.0001f) activeDistance = 0.0001f;
+
+            float scalePercentage = activeDistance / _initialDistance;
+            float previousScale = _activeScale;
+            _activeScale = _initialScale * scalePercentage;
+
+            var nextScale = _activeScale * _initialLocalScale;
+            _activeScale = nextScale.x / _initialLocalScale.x;
+
+            Vector3 worldOffsetFromCenter = targetTransform.position - initialCenter;
             
+            Vector3 offsetInTargetSpace = Quaternion.Inverse(initialRotation) * worldOffsetFromCenter;
+            offsetInTargetSpace /= previousScale;
+
+            Quaternion rotationInTargetSpace = Quaternion.Inverse(initialRotation) * targetTransform.rotation;
+            
+            _previousGrabPointA = new Pose(grabA.position, grabA.rotation);
+            _previousGrabPointB = new Pose(grabB.position, grabB.rotation);
+            
+            // update position, rotation, and localScale
+            // targetTransform.position = (targetRotation * (_activeScale * offsetInTargetSpace)) + targetCenter;
+            // targetTransform.rotation = targetRotation * rotationInTargetSpace;
+            // targetTransform.localScale = nextScale;
+            
+            // Vector3 trans = new Vector3(0, 0.0f, 0.0f);
+            // float scale_factor = 1.1f;
+            // Vector3 scale = _initialLocalScale * scale_factor;
+            // // Vector3 eulerAngles = new Vector3(15f, 0, 0);
+            // Vector3 eulerAngles = new Vector3(0, 0, 0);
+            // Quaternion rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
+
+            var nextStretchScale = scalePercentage * _initialLocalScale;
+            
+            Vector3 trans = (targetRotation * (_activeScale * offsetInTargetSpace)) + targetCenter;
+            Quaternion rotation = targetRotation * rotationInTargetSpace;
+            MatrixTransform(trans, rotation, nextStretchScale);
         }
         
         public void EndTransform() { }
@@ -89,13 +130,14 @@ namespace Oculus.Interaction
             Debug.Log(_matrix);
             UpdateMeshVertices();
         }
-                
+        
         public void UpdateMeshVertices()
         {
             Vector3[] vertices = mesh.vertices;
-            for (int i = 0; i < vertices.Length; i++)
+            
+            for (int i = 0; i < initialMeshVertices.Length; i++)
             {
-                vertices[i] = _matrix.MultiplyPoint3x4(vertices[i]);
+                vertices[i] = _matrix.MultiplyPoint3x4(initialMeshVertices[i]);
             }
             mesh.vertices = vertices;
             
