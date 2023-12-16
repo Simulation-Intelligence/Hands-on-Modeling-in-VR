@@ -379,7 +379,8 @@
 "Assets/Scripts/GesturalOperations/PinchObject.cs"
 "Assets/Scripts/GesturalOperations/ShearObject.cs"
 "Assets/Scripts/GesturalOperations/StretchObject.cs"
-"Assets/Scripts/MatrixTransform/MatrixTransform.cs"
+"Assets/Scripts/GesturalOperations/TwistObject.cs"
+"Assets/Scripts/MatrixOperations.cs/MatrixOperations.cs"
 -langversion:9.0
 
 /deterministic

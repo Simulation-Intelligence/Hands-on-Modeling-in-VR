@@ -15,12 +15,12 @@ namespace Oculus.Interaction
         
         private Pose _previousGrabPointA;
         private Pose _previousGrabPointB;
-        private Pose _grabDeltaInLocalSpace;
         private IGrabbable _grabbable;
         
         private Mesh mesh;
         private Vector3[] initialMeshVertices;
         private Matrix4x4 _matrix;
+        public enum Axis {X, Y, Z};
         
         public void Initialize(IGrabbable grabbable)
         {
@@ -36,9 +36,8 @@ namespace Oculus.Interaction
             var grabA = _grabbable.GrabPoints[0];
             var grabB = _grabbable.GrabPoints[1];
             
-            // Initialize transformer ratotion
             Vector3 diff = grabB.position - grabA.position;
-            
+                        
             _activeRotation = Quaternion.LookRotation(diff, Vector3.up).normalized;
             _initialDistance = diff.magnitude;
             
@@ -59,76 +58,49 @@ namespace Oculus.Interaction
             
             var targetTransform = _grabbable.Transform;
             
-            // Use the centroid of our grabs as the transformation center
-            var initialCenter = Vector3.Lerp(_previousGrabPointA.position, _previousGrabPointB.position, 0.5f);
-            var targetCenter = Vector3.Lerp(grabA.position, grabB.position, 0.5f);
-
-            Quaternion initialRotation = _activeRotation;
-            
             Vector3 initialVector = _previousGrabPointB.position - _previousGrabPointA.position;
             Vector3 targetVector = grabB.position - grabA.position;
             
-            Quaternion baseRotation = Quaternion.FromToRotation(initialVector, targetVector);
-
-            Quaternion deltaA = grabA.rotation * Quaternion.Inverse(_previousGrabPointA.rotation);
-            Quaternion halfDeltaA = Quaternion.Slerp(Quaternion.identity, deltaA, 1.0f);
+            Vector3 trans = new Vector3(0, 0, 0);
+            Quaternion rotation = Quaternion.identity;
+            var scale = _initialLocalScale;
             
-            Quaternion deltaB = grabB.rotation * Quaternion.Inverse(_previousGrabPointB.rotation);
-            Quaternion halfDeltaB = Quaternion.Slerp(Quaternion.identity, deltaB, 1.0f);
-
-            Quaternion baseTargetRotation = baseRotation * halfDeltaA * halfDeltaB * initialRotation;
-            
-            Vector3 upDirection = baseTargetRotation * Vector3.up;
-            Quaternion targetRotation = Quaternion.LookRotation(targetVector, upDirection).normalized;
-
-            _activeRotation = targetRotation;
-
-            float activeDistance = targetVector.magnitude;
-            if(Mathf.Abs(activeDistance) < 0.0001f) activeDistance = 0.0001f;
-
-            float scalePercentage = activeDistance / _initialDistance;
-            float previousScale = _activeScale;
-            _activeScale = _initialScale * scalePercentage;
-
-            var nextScale = _activeScale * _initialLocalScale;
-            _activeScale = nextScale.x / _initialLocalScale.x;
-
-            Vector3 worldOffsetFromCenter = targetTransform.position - initialCenter;
-            
-            Vector3 offsetInTargetSpace = Quaternion.Inverse(initialRotation) * worldOffsetFromCenter;
-            offsetInTargetSpace /= previousScale;
-
-            Quaternion rotationInTargetSpace = Quaternion.Inverse(initialRotation) * targetTransform.rotation;
+            MatrixTransform(trans, rotation, scale);
+            // shear the object
+            float shear_angle1 = 90f - Vector3.Angle(targetVector, Vector3.right);
+            float shear_angle2 = 0f;
+            shearObject(Axis.X, shear_angle1, shear_angle2);
+            UpdateMeshVertices();
             
             _previousGrabPointA = new Pose(grabA.position, grabA.rotation);
             _previousGrabPointB = new Pose(grabB.position, grabB.rotation);
-            
-            // update position, rotation, and localScale
-            // targetTransform.position = (targetRotation * (_activeScale * offsetInTargetSpace)) + targetCenter;
-            // targetTransform.rotation = targetRotation * rotationInTargetSpace;
-            // targetTransform.localScale = nextScale;
-            
-            // Vector3 trans = new Vector3(0, 0.0f, 0.0f);
-            // float scale_factor = 1.1f;
-            // Vector3 scale = _initialLocalScale * scale_factor;
-            // // Vector3 eulerAngles = new Vector3(15f, 0, 0);
-            // Vector3 eulerAngles = new Vector3(0, 0, 0);
-            // Quaternion rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
-
-            var nextStretchScale = scalePercentage * _initialLocalScale;
-            
-            Vector3 trans = (targetRotation * (_activeScale * offsetInTargetSpace)) + targetCenter;
-            Quaternion rotation = targetRotation * rotationInTargetSpace;
-            MatrixTransform(trans, rotation, nextStretchScale);
         }
         
         public void EndTransform() { }
         
         public void MatrixTransform(Vector3 trans, Quaternion rotation, Vector3 scale)
         {
+            // include translation, rotation, and scale
             _matrix.SetTRS(trans, rotation, scale);
-            Debug.Log(_matrix);
-            UpdateMeshVertices();
+        }
+        
+        public void shearObject(Axis axis, float shear_angle1, float shear_angle2)
+        {
+            switch (axis)
+            {
+                case Axis.X:
+                    _matrix.m01 = Mathf.Tan(shear_angle1 * Mathf.Deg2Rad); // Shearing along X-axis with respect to Y
+                    _matrix.m02 = Mathf.Tan(shear_angle2 * Mathf.Deg2Rad); // Shearing along X-axis with respect to Z
+                    break;
+                case Axis.Y:
+                    _matrix.m10 = Mathf.Tan(shear_angle1 * Mathf.Deg2Rad); // Shearing along Y-axis with respect to X
+                    _matrix.m12 = Mathf.Tan(shear_angle2 * Mathf.Deg2Rad); // Shearing along Y-axis with respect to Z
+                    break;
+                case Axis.Z:
+                    _matrix.m20 = Mathf.Tan(shear_angle1 * Mathf.Deg2Rad); // Shearing along Z-axis with respect to X
+                    _matrix.m21 = Mathf.Tan(shear_angle2 * Mathf.Deg2Rad); // Shearing along Z-axis with respect to Y
+                    break;
+            } 
         }
         
         public void UpdateMeshVertices()
