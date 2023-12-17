@@ -44,10 +44,10 @@ namespace Oculus.Interaction
 
         private Transform PivotTransform =>
             _pivotTransform != null ? _pivotTransform : _grabbable.Transform;
-
+        
         [SerializeField]
         private Axis _rotationAxis = Axis.Up;
-
+        
         [Serializable]
         public class TwoGrabRotateConstraints
         {
