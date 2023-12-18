@@ -52,6 +52,7 @@ namespace Oculus.Interaction
             
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
+            
         }
     }
 }
