@@ -69,7 +69,7 @@ namespace Oculus.Interaction
             // shear the object
             float shear_angle1 = 90f - Vector3.Angle(targetVector, Vector3.right);
             float shear_angle2 = 0f;
-            shearObject(Axis.X, shear_angle1, shear_angle2);
+            ShearVertices(Axis.X, shear_angle1, shear_angle2);
             UpdateMeshVertices();
             
             _previousGrabPointA = new Pose(grabA.position, grabA.rotation);
@@ -84,7 +84,7 @@ namespace Oculus.Interaction
             _matrix.SetTRS(trans, rotation, scale);
         }
         
-        public void shearObject(Axis axis, float shear_angle1, float shear_angle2)
+        public void ShearVertices(Axis axis, float shear_angle1, float shear_angle2)
         {
             switch (axis)
             {

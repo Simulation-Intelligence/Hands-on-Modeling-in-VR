@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2358,8 +2358,9 @@ GameObject:
   - component: {fileID: 1869761786}
   - component: {fileID: 1869761790}
   - component: {fileID: 1869761791}
-  - component: {fileID: 1869761792}
   - component: {fileID: 1869761793}
+  - component: {fileID: 1869761794}
+  - component: {fileID: 1869761795}
   m_Layer: 0
   m_Name: Cube-twist
   m_TagString: Untagged
@@ -2447,9 +2448,9 @@ Transform:
   m_GameObject: {fileID: 1869761785}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.335, y: -0.051, z: 0.433}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: -0.335, y: 0.056, z: 0.433}
+  m_LocalScale: {x: 0.1, y: 0.3, z: 0.1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1466897179}
   m_Father: {fileID: 0}
@@ -2497,22 +2498,9 @@ MonoBehaviour:
   _addNewPointsToFront: 0
   _forwardElement: {fileID: 0}
   _oneGrabTransformer: {fileID: 1869761793}
-  _twoGrabTransformer: {fileID: 1869761792}
+  _twoGrabTransformer: {fileID: 1869761795}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
---- !u!114 &1869761792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1869761785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8e80c5f61d81ea4d8f7675d69bac723, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotationAxis: 1
 --- !u!114 &1869761793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2523,6 +2511,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3236b8f205019504589358e7e0412a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1869761794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869761785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b80644816ce922468d6e1dc8c12daff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pivotTransform: {fileID: 0}
+  _rotationAxis: 1
+  _constraints:
+    MinAngle:
+      Constrain: 0
+      Value: 0
+    MaxAngle:
+      Constrain: 0
+      Value: 0
+--- !u!114 &1869761795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869761785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e80c5f61d81ea4d8f7675d69bac723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2044729404 stripped
