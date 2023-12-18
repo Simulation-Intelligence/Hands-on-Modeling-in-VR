@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/GesturalOperations/StretchObject.cs" />
-    <Compile Include="Assets/Scripts/GesturalOperations/BendingObject.cs" />
+    <Compile Include="Assets/Scripts/GesturalOperations/BendObject.cs" />
     <Compile Include="Assets/Scripts/MatrixOperations.cs/MatrixOperations.cs" />
     <Compile Include="Assets/Scripts/GesturalOperations/ShearObject.cs" />
     <Compile Include="Assets/Scripts/GesturalOperations/TwistObject.cs" />

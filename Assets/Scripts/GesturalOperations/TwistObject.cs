@@ -49,7 +49,12 @@ namespace Oculus.Interaction
             initialMeshVertices = mesh.vertices;
             _initialLocalScale = _grabbable.Transform.localScale;
 
-            FindPeakAxisValue();
+            // find the minimum and maximum y-values of the vertices
+            foreach (Vector3 vertex in initialMeshVertices)
+            {
+                if (vertex.y < minY) minY = vertex.y;
+                if (vertex.y > maxY) maxY = vertex.y;
+            }
             
             // use the _grabbable.Transform as the _pivotTransform
             _pivotTransform = _grabbable.Transform;
@@ -122,15 +127,6 @@ namespace Oculus.Interaction
 
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
-        }
-        
-        public void FindPeakAxisValue() {
-            // find the minimum and maximum y-values of the vertices
-            foreach (Vector3 vertex in initialMeshVertices)
-            {
-                if (vertex.y < minY) minY = vertex.y;
-                if (vertex.y > maxY) maxY = vertex.y;
-            }
         }
         
         public void UpdateMeshVertices()
