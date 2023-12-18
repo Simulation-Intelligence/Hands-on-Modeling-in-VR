@@ -1,0 +1,4 @@
+#Mon Dec 18 14:15:12 EST 2023
+base.0=C\:\\Users\\23703\\VR 3D Modeling (Win)\\VR 3D Modeling\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\launcher\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

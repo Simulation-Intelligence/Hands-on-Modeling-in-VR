@@ -116,8 +116,8 @@ namespace Oculus.Interaction
             
             for (int i = 0; i < initialMeshVertices.Length; i++)
             {
-                float fraction = (vertices[i].y - minY) / (maxY - minY);
-                float twistAngle = fraction * _relativeAngle * 0.5f;
+                float fraction = (initialMeshVertices[i].y - minY) / (maxY - minY);
+                float twistAngle = fraction * _relativeAngle * 0.2f;
                 
                 Matrix4x4 matrix = Matrix4x4.Rotate(Quaternion.Euler(0, twistAngle, 0));
                 vertices[i] = matrix.MultiplyPoint3x4(initialMeshVertices[i]);

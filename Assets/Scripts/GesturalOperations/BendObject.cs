@@ -23,7 +23,7 @@ namespace Oculus.Interaction
             mesh = GetComponent<MeshFilter>().mesh;
             initialMeshVertices = mesh.vertices;
         }
-
+        
         public void UpdateTransform()
         {
             var grabA = _grabbable.GrabPoints[0];
@@ -31,25 +31,21 @@ namespace Oculus.Interaction
 
             Vector3 _midPoint = (grabA.position + grabB.position) / 2.0f;
             Vector3 handDirection = (grabB.position - grabA.position).normalized;
-            float bendAmount = Vector3.Distance(grabA.position, grabB.position);
+            float bendAmount = 1.0f;
             
-            BendVertices(_midPoint, handDirection, bendAmount);
+            BendVertices(bendAmount);
         }
         
         public void EndTransform() { }
-                
-        public void BendVertices(Vector3 _midPoint, Vector3 handDirection, float bendAmount)
+        
+        public void BendVertices(float offset)
         {
             Vector3[] vertices = mesh.vertices;
-
+            
             for (int i = 0; i < initialMeshVertices.Length; i++)
             {
-                float distanceFromMidpoint = Vector3.Distance(initialMeshVertices[i], _midPoint);
-                float bendFactor = Mathf.Sin(distanceFromMidpoint * bendAmount);
-
-                Quaternion bendRotation = Quaternion.AngleAxis(bendFactor, handDirection);
-
-                vertices[i] = bendRotation * (vertices[i] - _midPoint) + _midPoint;
+                vertices[i].y += Mathf.Sin(3.5f * initialMeshVertices[i].x) * 0.1f;
+                // vertices[i].y += initialMeshVertices[i].x * 0.1f;
             }
             
             mesh.vertices = vertices;

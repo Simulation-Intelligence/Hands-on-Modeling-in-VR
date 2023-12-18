@@ -1,0 +1,208 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.unity3d.player"
+4    android:installLocation="auto" >
+5
+6    <uses-sdk
+7        android:minSdkVersion="29"
+7-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml
+8        android:targetSdkVersion="32" />
+8-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml
+9
+10    <uses-permission android:name="com.oculus.permission.HAND_TRACKING" />
+10-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:3:3-73
+10-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:3:20-70
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:4:3-65
+11-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:4:20-62
+12
+13    <uses-feature
+13-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:5:3-111
+14        android:name="android.hardware.vr.headtracking"
+14-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:5:17-64
+15        android:required="true"
+15-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:5:85-108
+16        android:version="1" />
+16-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:5:65-84
+17    <uses-feature
+17-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:6:3-87
+18        android:name="oculus.software.handtracking"
+18-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:6:17-60
+19        android:required="true" />
+19-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:6:61-84
+20    <uses-feature android:glEsVersion="0x00030000" />
+20-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:7:3-52
+20-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:7:17-49
+21    <uses-feature
+21-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:8:3-91
+22        android:name="android.hardware.vulkan.version"
+22-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:8:17-63
+23        android:required="false" />
+23-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:8:64-88
+24    <uses-feature
+24-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:9:3-88
+25        android:name="android.hardware.touchscreen"
+25-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:9:17-60
+26        android:required="false" />
+26-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:9:61-85
+27    <uses-feature
+27-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:10:3-99
+28        android:name="android.hardware.touchscreen.multitouch"
+28-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:10:17-71
+29        android:required="false" />
+29-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:10:72-96
+30    <uses-feature
+30-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:11:3-108
+31        android:name="android.hardware.touchscreen.multitouch.distinct"
+31-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:11:17-80
+32        android:required="false" />
+32-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:11:81-105
+33
+34    <application
+34-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:12:3-36:17
+35        android:allowBackup="false"
+35-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:12:81-108
+36        android:extractNativeLibs="true"
+36-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:12:109-141
+37        android:icon="@mipmap/app_icon"
+37-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:12:49-80
+38        android:label="@string/app_name"
+38-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:12:16-48
+39        android:networkSecurityConfig="@xml/network_sec_config" >
+39-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:12:142-197
+40        <meta-data
+40-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:13:5-89
+41            android:name="unityplayer.SkipPermissionsDialog"
+41-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:13:16-64
+42            android:value="false" />
+42-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:13:65-86
+43        <meta-data
+43-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:14:5-97
+44            android:name="com.samsung.android.vr.application.mode"
+44-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:14:16-70
+45            android:value="vr_only" />
+45-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:14:71-94
+46        <meta-data
+46-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:5-87
+47            android:name="com.oculus.handtracking.frequency"
+47-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:16-64
+48            android:value="LOW" />
+48-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:15:65-84
+49        <meta-data
+49-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:16:5-100
+50            android:name="com.oculus.supportedDevices"
+50-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:16:16-58
+51            android:value="quest2|questpro|eureka" />
+51-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:16:59-97
+52        <meta-data
+52-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:17:5-69
+53            android:name="unity.splash-mode"
+53-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:17:16-48
+54            android:value="0" />
+54-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:17:49-66
+55        <meta-data
+55-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:18:5-74
+56            android:name="unity.splash-enable"
+56-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:18:16-50
+57            android:value="True" />
+57-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:18:51-71
+58        <meta-data
+58-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:19:5-78
+59            android:name="unity.launch-fullscreen"
+59-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:19:16-54
+60            android:value="True" />
+60-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:19:55-75
+61        <meta-data
+61-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:20:5-84
+62            android:name="unity.allow-resizable-window"
+62-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:20:16-59
+63            android:value="False" />
+63-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:20:60-81
+64        <meta-data
+64-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:21:5-81
+65            android:name="notch.config"
+65-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:21:16-43
+66            android:value="portrait|landscape" />
+66-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:21:44-78
+67        <meta-data
+67-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:22:5-84
+68            android:name="unity.auto-report-fully-drawn"
+68-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:22:16-60
+69            android:value="true" />
+69-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:22:61-81
+70
+71        <activity
+71-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:5-31:16
+72            android:name="com.unity3d.player.UnityPlayerActivity"
+72-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:222-275
+73            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|uiMode|density"
+73-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:80-189
+74            android:excludeFromRecents="true"
+74-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:276-309
+75            android:exported="true"
+75-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:310-333
+76            android:hardwareAccelerated="false"
+76-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:407-442
+77            android:launchMode="singleTask"
+77-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:190-221
+78            android:resizeableActivity="false"
+78-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:372-406
+79            android:screenOrientation="landscape"
+79-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:334-371
+80            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+80-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:23:15-79
+81            <intent-filter>
+81-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:24:7-28:23
+82                <category android:name="android.intent.category.LAUNCHER" />
+82-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:25:9-69
+82-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:25:19-66
+83                <category android:name="com.oculus.intent.category.VR" />
+83-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:26:9-66
+83-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:26:19-63
+84
+85                <action android:name="android.intent.action.MAIN" />
+85-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:27:9-61
+85-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:27:17-58
+86            </intent-filter>
+87
+88            <meta-data
+88-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:29:7-81
+89                android:name="com.oculus.vr.focusaware"
+89-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:29:18-57
+90                android:value="true" />
+90-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:29:58-78
+91            <meta-data
+91-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:30:7-70
+92                android:name="notch_support"
+92-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:30:18-46
+93                android:value="true" />
+93-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:30:47-67
+94        </activity>
+95
+96        <meta-data
+96-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:32:5-90
+97            android:name="com.unity.xr.oculus.LowOverheadMode"
+97-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:32:16-66
+98            android:value="true" />
+98-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:32:67-87
+99        <meta-data
+99-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:33:5-88
+100            android:name="com.unity.xr.oculus.LateLatching"
+100-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:33:16-63
+101            android:value="false" />
+101-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:33:64-85
+102        <meta-data
+102-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:34:5-93
+103            android:name="com.unity.xr.oculus.LateLatchingDebug"
+103-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:34:16-68
+104            android:value="false" />
+104-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:34:69-90
+105        <meta-data
+105-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:35:5-86
+106            android:name="com.oculus.handtracking.version"
+106-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:35:16-62
+107            android:value="V2.0" />
+107-->C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\AndroidManifest.xml:35:63-83
+108    </application>
+109
+110</manifest>

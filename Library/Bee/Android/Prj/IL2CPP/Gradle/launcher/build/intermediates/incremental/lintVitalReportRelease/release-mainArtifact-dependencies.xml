@@ -1,0 +1,23 @@
+<dependencies>
+  <compile
+      roots="C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle@@:unityLibrary::release">
+    <dependency
+        name="C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle@@:unityLibrary::release"
+        simpleName="Gradle:unityLibrary"/>
+  </compile>
+  <package
+      roots="C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle@@:unityLibrary::release,__local_aars__:C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\libs\unity-classes.jar:unspecified@jar,:InteractionSdk:@aar,:OVRPlugin:@aar,C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle@@:unityLibrary:xrmanifest.androidlib::release">
+    <dependency
+        name="C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle@@:unityLibrary::release"
+        simpleName="Gradle:unityLibrary"/>
+    <dependency
+        name="__local_aars__:C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\libs\unity-classes.jar:unspecified@jar"/>
+    <dependency
+        name=":InteractionSdk:@aar"/>
+    <dependency
+        name=":OVRPlugin:@aar"/>
+    <dependency
+        name="C:\Users\23703\VR 3D Modeling (Win)\VR 3D Modeling\Library\Bee\Android\Prj\IL2CPP\Gradle@@:unityLibrary:xrmanifest.androidlib::release"
+        simpleName="Gradle.unityLibrary:xrmanifest.androidlib"/>
+  </package>
+</dependencies>
