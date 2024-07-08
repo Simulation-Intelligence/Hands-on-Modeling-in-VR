@@ -13,7 +13,7 @@ namespace Oculus.Interaction
         {
             _grabbable = grabbable;
         }
-
+        
         private Mesh mesh;
         private Vector3[] initialMeshVertices;
         private Matrix4x4 _matrix;

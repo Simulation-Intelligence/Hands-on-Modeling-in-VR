@@ -34,6 +34,7 @@ public class PinchObject : MonoBehaviour
         if (isLeftHandIndexFingerPinching) {
             transform.position = leftHand.transform.position;
             transform.rotation = Quaternion.LookRotation(transform.position - leftHand.transform.position);
+            
         } else if (isRightHandIndexFingerPinching) {
             transform.position = rightHand.transform.position;
             transform.rotation = Quaternion.LookRotation(transform.position - rightHand.transform.position);
