@@ -1,8 +1,7 @@
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
-/.vs/
+Build/
+Library/
+Temp/
+obj/
+Logs/
+UserSettings/
+.vs/
