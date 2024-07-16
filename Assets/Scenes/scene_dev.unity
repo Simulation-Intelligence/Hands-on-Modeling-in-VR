@@ -2963,6 +2963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 822739844}
   - component: {fileID: 822739846}
+  - component: {fileID: 822739847}
   m_Layer: 0
   m_Name: OVRLeftHandVisual
   m_TagString: Untagged
@@ -3028,6 +3029,48 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &822739847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822739843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36488d57f8053c4ebb76b1e1c362e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handType: 0
+  RenderHandSkeleton: 1
+  RenderSkeletonCapsule: 0
+  RenderHandMesh: 0
+  RenderBoneVertices: 1
+  jointTransforms:
+  - {fileID: 391694524}
+  - {fileID: 681852928}
+  - {fileID: 388207670}
+  - {fileID: 2060818581}
+  - {fileID: 2061736761}
+  - {fileID: 2038943926}
+  - {fileID: 1545782652}
+  - {fileID: 1276954626}
+  - {fileID: 1943510224}
+  - {fileID: 1913062194}
+  - {fileID: 178065536}
+  - {fileID: 1578012078}
+  - {fileID: 2131807786}
+  - {fileID: 1536086444}
+  - {fileID: 1012377949}
+  - {fileID: 1152831270}
+  - {fileID: 251395973}
+  - {fileID: 1659883269}
+  - {fileID: 1437536384}
+  - {fileID: 1648082957}
+  - {fileID: 613764641}
+  - {fileID: 169642003}
+  - {fileID: 718170877}
+  - {fileID: 1924715217}
 --- !u!1 &834607903
 GameObject:
   m_ObjectHideFlags: 0

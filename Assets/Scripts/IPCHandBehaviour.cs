@@ -55,9 +55,9 @@ namespace VR3DModeling
         void Start()
         {
             // Initialize one hand or two hands
-            InitializeHands();
+            //InitializeHands();
             //InitializeMesh();
-            InitializeFEMMesh();
+            //InitializeFEMMesh();
 
             // Setup Oculus Tracking
             oculusBones = new List<GameObject>[2];
@@ -89,7 +89,7 @@ namespace VR3DModeling
                     oculusBones[i].Add(bone);
                 }
             }    
-
+            
             // Set initial bone positions and rotations
             for (int i = 0; i < 2; i++)
             {
@@ -178,7 +178,7 @@ namespace VR3DModeling
 
                     hand._verticesFEM[j] = new Vector3(x, y, z);
                 }
-
+                
                 // Triangles
                 hand._trianglesFEM = tetHandMeshes[i].CalculateTetTriIds();
                 

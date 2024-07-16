@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Text.Json;
+using System.IO;
 
 namespace VR3DModeling
 {
@@ -22,6 +22,7 @@ namespace VR3DModeling
         private int _handIndex = -1;
 
         public bool RenderHandSkeleton = false;
+        public bool RenderSkeletonCapsule = false;
         public bool RenderHandMesh = false;
         public bool RenderBoneVertices = true;
         
@@ -46,20 +47,26 @@ namespace VR3DModeling
 
                 // Get the tetrahedra hand mesh
                 tetHandMesh = new TetHandMesh(_handIndex);
+                
+                // Render hand mesh
+                if (RenderHandMesh)
+                {
+                    RenderMesh();
+                }
 
                 // Calculate all the vertices on the bones
                 //GetBoneVertices(RenderBoneVertices);
 
-                // Render bones that assigned in Unity Editor
+                // Render bones that have been assigned in Unity Editor
                 if (RenderHandSkeleton)
                 {
                     RenderSkeleton();
                 }
 
-                // Render hand mesh
-                if (RenderHandMesh)
+                // Render hand skeleton capsule
+                if (RenderSkeletonCapsule)
                 {
-                    RenderMesh();
+                    RenderHandSkeletonCapsule();
                 }
             }
             else
@@ -343,9 +350,14 @@ namespace VR3DModeling
 
             Material _skeletonMaterial = new Material(Shader.Find("Diffuse"));
             _skeletonMaterial.color = Color.red;
-
+            
             for (int i = 0; i < jointTransforms.Count; i++)
             {
+                if (jointTransforms[i].position == Vector3.zero)
+                {
+                    continue;
+                }
+
                 var boneVis = new BoneVisualization(
                     _skeletonGO,
                     _skeletonMaterial,
@@ -355,14 +367,121 @@ namespace VR3DModeling
                     
                 boneVisualizations.Add(boneVis);
 
-                // Render white spheres on the bones' positions
-                GameObject start = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                GameObject end = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                start.transform.position = jointTransforms[i].position;
-                end.transform.position = jointTransforms[i].parent.position;
-                start.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
-                end.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
+                // Render white spheres on the joints' positions
+                if (true)
+                {
+                    GameObject start = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    GameObject end = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    start.transform.position = jointTransforms[i].position;
+                    end.transform.position = jointTransforms[i].parent.position;
+                    start.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
+                    end.transform.localScale = new Vector3(0.005f, 0.005f, 0.005f);
+                }
             }
+        }
+        
+        private void RenderHandSkeletonCapsule()
+        {
+            float capsult_radius = 0.007f;
+            List<Segment> segments = new List<Segment>();
+
+            for (int i = 0; i < jointTransforms.Count; i++)
+            {
+                Vector3 start = jointTransforms[i].position;
+                Vector3 end = jointTransforms[i].parent.position;
+
+                if (start == Vector3.zero)
+                {
+                    continue;
+                }
+                
+                GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+                capsule.transform.localScale = new Vector3(capsult_radius * 2, Vector3.Distance(start, end) / 2, capsult_radius * 2);
+                capsule.transform.position = (start + end) / 2;
+                Vector3 direction = (end - start).normalized;
+                capsule.transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(90, 0, 0);
+
+                segments.Add(new Segment
+                {
+                    start = new Vector3Data { x = start.x, y = start.y, z = start.z },
+                    end = new Vector3Data { x = end.x, y = end.y, z = end.z }
+                });
+            }
+
+            // Save as .json file
+            if (false)
+            {
+                SegmentWrapper wrapper = new SegmentWrapper { skeleton_segments = segments };
+                string json_data = JsonUtility.ToJson(wrapper, true);
+                string path = Path.Combine(Application.dataPath, "Scripts/IPCHand/");
+                path = path.Replace("\\", "/");
+                File.WriteAllText(Path.Combine(path, "HandSkeletonSegments.json"), json_data);
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class Segment
+    {
+        public Vector3Data start;
+        public Vector3Data end;
+    }
+
+    [System.Serializable]
+    public class Vector3Data
+    {
+        public float x;
+        public float y;
+        public float z;
+    }
+
+    [System.Serializable]
+    public class SegmentWrapper
+    {
+        public List<Segment> skeleton_segments;
+    }
+
+    public class BoneVisualization
+    {
+        private GameObject BoneGO;
+        private Transform BoneBegin;
+        private Transform BoneEnd;
+        private LineRenderer Line;
+        private Material RenderMaterial;
+        private const float LINE_RENDERER_WIDTH = 0.002f;
+        
+        public BoneVisualization(GameObject rootGO, Material renderMat, Transform begin, Transform end)
+        {
+            RenderMaterial = renderMat;
+
+            BoneBegin = begin;
+            BoneEnd = end;
+
+            BoneGO = new GameObject(begin.name);
+            BoneGO.transform.SetParent(rootGO.transform, false);
+
+            Line = BoneGO.AddComponent<LineRenderer>();
+            Line.sharedMaterial = RenderMaterial;
+            Line.useWorldSpace = true;
+            Line.positionCount = 2;
+
+            Line.SetPosition(0, BoneBegin.position);
+            Line.SetPosition(1, BoneEnd.position);
+
+            Line.startWidth = LINE_RENDERER_WIDTH;
+            Line.endWidth = LINE_RENDERER_WIDTH;
+        }
+
+        public void Update(float scale, bool shouldRender)
+        {
+            Line.SetPosition(0, BoneBegin.position);
+            Line.SetPosition(1, BoneEnd.position);
+
+            Line.startWidth = LINE_RENDERER_WIDTH;
+            Line.endWidth = LINE_RENDERER_WIDTH;
+
+            Line.enabled = shouldRender;
+            Line.sharedMaterial = RenderMaterial;
         }
     }
 }
