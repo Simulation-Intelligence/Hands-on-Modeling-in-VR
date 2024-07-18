@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\IPCHand\HandBones.cs" />
     <Compile Include="Assets\Scripts\IPCHandBehaviour.cs" />
     <Compile Include="Assets\Scripts\IPCHand\IPCHandPrefabs.cs" />
+    <Compile Include="Assets\Scripts\PointToSegmentDistance.cs" />
     <Compile Include="Assets\Scripts\GesturalOperations\StretchObject.cs" />
     <Compile Include="Assets\Scripts\GesturalOperations\BendObject.cs" />
     <Compile Include="Assets\Scripts\Utils\MatrixOperations.cs" />
